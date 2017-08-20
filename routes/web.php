@@ -18,4 +18,28 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/orders', 'OrdersController@index')->name('orders');
+
+/**
+ * Orders routes
+ */
+
+// index
+Route::get('/orders', 'OrdersController@index');
+
+// create
+Route::get('/orders/create', 'OrdersController@create');
+
+// store
+Route::post('/orders', 'OrdersController@store');
+
+// show
+Route::get('/orders/{id}', 'OrdersController@show');
+
+// edit
+Route::get('/orders/{id}/edit', 'OrdersController@edit');
+
+// update
+Route::put('/orders/{id}', 'OrdersController@update');
+
+// destroy
+Route::delete('/orders/{id}', 'OrdersController@destroy');

@@ -37,6 +37,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+                    @if (!Auth::guest())
                         <li role="presentation" class="active"><a href="/home">Home</a></li>
                         <li role="presentation"><a href="/orders">Orders</a></li>
                         <li role="presentation" class="dropdown">
@@ -47,13 +48,14 @@
                                     <li><a href="/users">Users</a></li>
                                 </ul>
                         </li>
+                    @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <!-- <li><a href="{{ route('login') }}">Login</a></li> -->
                             <!-- <li><a href="{{ route('register') }}">Register</a></li> -->
                         @else
                             <li class="dropdown">
@@ -80,6 +82,14 @@
                 </div>
             </div>
         </nav>
+
+        <div class="container">
+            @if (Session::has('message'))
+                <div class="flash alert">
+                    <p>{{ Session::get('message') }}</p>
+                </div>
+            @endif
+        </div>
 
         @yield('content')
     </div>
